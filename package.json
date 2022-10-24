@@ -1,0 +1,43 @@
+{
+  "name": "slackbot",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "netlify dev",
+    "live": "netlify dev --live",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --config ./prettierrc.js --write .",
+    "lint": "eslint . --ext .js,.ts",
+    "deploy": "netlify deploy",
+    "deploy-prod": "netlify deploy --prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechnologyMasters/slackbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechnologyMasters/slackbot/issues"
+  },
+  "homepage": "https://github.com/TechnologyMasters/slackbot#readme",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.101",
+    "@types/node": "^18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "^5.30.6",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "netlify-cli": "^12.0.9",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.7.1",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@netlify/functions": "^1.0.0",
+    "@slack/bolt": "^3.12.0",
+    "dotenv": "^16.0.1"
+  }
+}
