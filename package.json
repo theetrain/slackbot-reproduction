@@ -14,15 +14,10 @@
     "deploy-prod": "netlify deploy --prod"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TechnologyMasters/slackbot.git"
+    "type": "git"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/TechnologyMasters/slackbot/issues"
-  },
-  "homepage": "https://github.com/TechnologyMasters/slackbot#readme",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.101",
     "@types/node": "^18.0.6",
