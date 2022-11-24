@@ -28,8 +28,10 @@ const app = new App({
 })
 
 // /tm moderation Slash Command
-app.command('/tm', async ({ body, ack, client, respond, logger }) => {
+app.command('/tmdev', async ({ body, ack, client, respond, logger }) => {
   await ack()
+
+  console.log('caught')
 
   const invokingUserInfo = await client.users.info({ user: body.user_id })
   if (!invokingUserInfo.user.is_admin) {
@@ -40,7 +42,7 @@ app.command('/tm', async ({ body, ack, client, respond, logger }) => {
   }
 
   if (body.text !== 'greet') {
-    await respond('Please use a valid command such as `/tm greet`', {
+    await respond('Please use a valid command such as `/tmdev greet`', {
       response_type: 'ephemeral'
     })
     return
@@ -99,28 +101,36 @@ app.command('/tm', async ({ body, ack, client, respond, logger }) => {
 })
 
 app.view('user_view', async ({ ack, view, client, logger }) => {
-  await ack()
+  await ack({
+    response_action: 'update',
+    view: {
+      type: 'modal',
+      callback_id: 'test',
+      submit: {
+        type: 'plain_text',
+        text: 'Submit'
+      },
+      close: {
+        type: 'plain_text',
+        text: 'Cancel'
+      },
+      title: {
+        type: 'plain_text',
+        text: 'Updated view'
+      },
+      blocks: [
+        {
+          type: 'section',
+          text: {
+            type: 'plain_text',
+            text: 'New block text'
+          }
+        }
+      ]
+    }
+  })
 
-  logger.info('view handler')
-
-  logger.info('Block values', view.state.values)
-
-  const users
-    = view.state.values.users['multi_users_select-action'].selected_users
-  const description
-    = view.state.values.description['plain_text_input-action'].value
-
-  logger.info('values', users, description)
-
-  // Message the user
-  try {
-    await client.chat.postMessage({
-      channel: users[0],
-      text: `Greetings, you have a message! ${description}`
-    })
-  } catch (error) {
-    logger.error(error)
-  }
+  // other logic
 })
 
 const handler: Handler = async (
